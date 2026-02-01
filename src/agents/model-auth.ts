@@ -285,6 +285,10 @@ export function resolveEnvApiKey(provider: string): EnvApiKeyResult | null {
     return pick("KIMI_API_KEY") ?? pick("KIMICODE_API_KEY");
   }
 
+  if (normalized === "glm-coding-plan") {
+    return pick("GLM_CODING_PLAN_API_KEY") ?? pick("GLM_API_KEY");
+  }
+
   const envMap: Record<string, string> = {
     openai: "OPENAI_API_KEY",
     google: "GEMINI_API_KEY",
