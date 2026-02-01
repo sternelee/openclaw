@@ -264,6 +264,16 @@
     gap: 8px;
   }
 
+  /* Input field on separate line on mobile */
+  .chat-compose__row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .chat-compose__field {
+    width: 100%;
+  }
+
   .chat-compose__field textarea {
     min-height: 60px;
     padding: 10px 12px;
@@ -271,6 +281,15 @@
     /* Prevent zoom on iOS */
     font-size: 16px;
     touch-action: manipulation;
+  }
+
+  .chat-compose__actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .chat-compose__actions .btn {
+    flex: 1;
   }
 
   /* Log stream */
