@@ -316,6 +316,9 @@
   font-weight: 500;
   letter-spacing: -0.01em;
   cursor: pointer;
+  /* Better touch targets on mobile */
+  min-height: 44px;
+  touch-action: manipulation;
   transition:
     border-color var(--duration-fast) var(--ease-out),
     background var(--duration-fast) var(--ease-out),
@@ -445,6 +448,10 @@
   padding: 8px 12px;
   outline: none;
   box-shadow: inset 0 1px 0 var(--card-highlight);
+  /* Better mobile input handling */
+  min-height: 44px;
+  font-size: 16px; /* Prevent zoom on iOS */
+  touch-action: manipulation;
   transition:
     border-color var(--duration-fast) ease,
     box-shadow var(--duration-fast) ease;
@@ -632,6 +639,9 @@
   padding: 12px;
   background: var(--card);
   transition: border-color var(--duration-fast) ease;
+  /* Better touch target on mobile */
+  min-height: 44px;
+  touch-action: manipulation;
 }
 
 .list-item-clickable {
@@ -714,6 +724,9 @@
     border-color var(--duration-fast) var(--ease-out),
     background var(--duration-fast) var(--ease-out),
     transform var(--duration-fast) var(--ease-out);
+  /* Better touch target for interactive chips */
+  min-height: 36px;
+  touch-action: manipulation;
 }
 
 .chip:hover {
@@ -767,6 +780,9 @@
   border-radius: var(--radius-md);
   background: var(--card);
   transition: border-color var(--duration-fast) ease;
+  /* Better touch target on mobile */
+  min-height: 44px;
+  touch-action: manipulation;
 }
 
 .table-row:hover {

@@ -43,6 +43,8 @@
   flex-direction: column;
   height: 100%;
   background: var(--panel);
+  /* Better touch scrolling on mobile */
+  touch-action: pan-y;
 }
 
 .sidebar-header {
@@ -64,6 +66,9 @@
   font-size: 14px;
   min-width: auto;
   line-height: 1;
+  /* Better touch target on mobile */
+  min-height: 44px;
+  touch-action: manipulation;
 }
 
 .sidebar-title {
@@ -75,6 +80,9 @@
   flex: 1;
   overflow: auto;
   padding: 16px;
+  /* Better touch scrolling on mobile */
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
 .sidebar-markdown {

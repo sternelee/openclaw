@@ -191,11 +191,14 @@
 
 * {
   box-sizing: border-box;
+  /* Better touch handling on mobile */
+  -webkit-tap-highlight-color: transparent;
 }
 
 html,
 body {
   height: 100%;
+  /* Note: Safe area insets should be applied to specific elements, not globally */
 }
 
 body {
@@ -206,6 +209,10 @@ body {
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Prevent pull-to-refresh on mobile */
+  overscroll-behavior-y: contain;
+  /* Improve touch scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Theme transition */

@@ -48,6 +48,52 @@ Auth is supplied during the WebSocket handshake via:
 - Debug: status/health/models snapshots + event log + manual RPC calls (`status`, `health`, `models.list`)
 - Logs: live tail of gateway file logs with filter/export (`logs.tail`)
 - Update: run a package/git update + restart (`update.run`) with a restart report
+- **PWA support**: Install as standalone app with offline caching (see [PWA Mode](#pwa-mode) below)
+
+## PWA Mode
+
+The Control UI supports **Progressive Web App (PWA)** installation for app-like experience on mobile and desktop:
+
+### Features
+
+- **Offline Access**: Core UI assets are cached for offline use
+- **Standalone Mode**: Runs as a full-screen app without browser chrome
+- **App Shortcuts**: Quick access to Chat and Overview from launcher/home screen
+- **Update Management**: Service worker automatically updates cached resources
+
+### Installation
+
+**Android (Chrome/Edge)**
+1. Open the Control UI in Chrome
+2. Tap the menu (⋮) → "Add to Home screen" or "Install app"
+3. Confirm installation
+4. Launch from home screen
+
+**iOS (Safari)**
+1. Open the Control UI in Safari
+2. Tap the Share button (□↑)
+3. Scroll down and tap "Add to Home Screen"
+4. Name the app and tap "Add"
+5. Launch from home screen
+
+**Desktop (Chrome/Edge)**
+1. Open the Control UI in Chrome/Edge
+2. Look for the install icon (⊕) in the address bar
+3. Click "Install" to add to applications
+4. Launch from start menu/dock
+
+### Offline Behavior
+
+- **Static Assets**: JS, CSS, images are cached for offline access
+- **Network Calls**: API/WebSocket requests always use network (offline status shown when disconnected)
+- **Cache Updates**: Service worker updates cache in background when online
+
+### Technical Details
+
+- Service Worker: `/sw.js`
+- Manifest: `/manifest.json`
+- Cache Strategy: Cache-first for static assets, network-first for API calls
+- Auto-update: Checks for updates every 60 seconds when online
 
 ## Chat behavior
 

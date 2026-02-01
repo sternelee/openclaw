@@ -12,6 +12,8 @@
   /* Fixed max-height to ensure cards don't expand too much */
   max-height: 120px;
   overflow: hidden;
+  /* Better touch handling */
+  touch-action: manipulation;
 }
 
 .chat-tool-card:hover {

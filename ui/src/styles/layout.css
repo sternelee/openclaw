@@ -82,6 +82,10 @@
   height: var(--shell-topbar-height);
   border-bottom: 1px solid var(--border);
   background: var(--bg);
+  /* Safe area insets for notched devices */
+  padding-left: max(20px, env(safe-area-inset-left));
+  padding-right: max(20px, env(safe-area-inset-right));
+  padding-top: env(safe-area-inset-top);
 }
 
 .topbar-left {
@@ -203,6 +207,9 @@
     padding var(--shell-focus-duration) var(--shell-focus-ease),
     opacity var(--shell-focus-duration) var(--shell-focus-ease);
   min-height: 0;
+  /* Better touch scrolling on mobile */
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
 .nav::-webkit-scrollbar {
@@ -243,6 +250,10 @@
     background var(--duration-fast) ease,
     border-color var(--duration-fast) ease;
   margin-bottom: 16px;
+  /* Better touch target on mobile */
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
 }
 
 .nav-collapse-toggle:hover {
@@ -362,6 +373,9 @@
     border-color var(--duration-fast) ease,
     background var(--duration-fast) ease,
     color var(--duration-fast) ease;
+  /* Better touch target on mobile */
+  min-height: 44px;
+  touch-action: manipulation;
 }
 
 .nav-item__icon {
@@ -424,6 +438,9 @@
   min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
+  /* Better touch scrolling on mobile */
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
 :root[data-theme="light"] .content {
