@@ -448,6 +448,13 @@
 
   .theme-toggle__button {
     min-height: 36px;
-    min-width: 36px;
+    min-width: 24px;
+  }
+  .card.chat {
+    padding: 0;
+  }
+  .chat-avatar {
+    width: 30px;
+    height: 30px;
   }
 }
