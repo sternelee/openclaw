@@ -286,7 +286,7 @@ export function resolveEnvApiKey(provider: string): EnvApiKeyResult | null {
   }
 
   if (normalized === "glm-coding-plan") {
-    return pick("GLM_API_KEY") ?? pick("GLM_CODING_PLAN_API_KEY");
+    return pick("GLM_API_KEY");
   }
 
   const envMap: Record<string, string> = {

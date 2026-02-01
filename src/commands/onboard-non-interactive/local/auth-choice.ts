@@ -192,12 +192,12 @@ export async function applyNonInteractiveAuthChoice(params: {
     return applyZaiConfig(nextConfig);
   }
 
-  if (authChoice === "glm-coding-plan-api-key") {
+  if (authChoice === "glm-api-key") {
     const resolved = await resolveNonInteractiveApiKey({
       provider: "glm-coding-plan",
       cfg: baseConfig,
       flagValue: opts.glmCodingPlanApiKey,
-      flagName: "--glm-coding-plan-api-key",
+      flagName: "--glm-api-key",
       envVar: "GLM_API_KEY",
       runtime,
     });
