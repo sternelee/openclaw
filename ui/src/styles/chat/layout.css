@@ -57,6 +57,9 @@
   min-height: 0; /* Allow shrinking for flex scroll behavior */
   border-radius: 12px;
   background: transparent;
+  /* Better touch scrolling on mobile */
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
 /* Focus mode exit button */
@@ -82,6 +85,10 @@
     color 150ms ease-out,
     border-color 150ms ease-out;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  /* Better touch target on mobile */
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
 }
 
 .chat-focus-exit:hover {
@@ -259,6 +266,17 @@
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.45;
+  /* Better mobile input handling */
+  touch-action: manipulation;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 600px) {
+  .chat-compose .chat-compose__field textarea {
+    /* Prevent zoom on iOS */
+    font-size: 16px;
+    min-height: 60px;
+  }
 }
 
 .chat-compose__field textarea:disabled {

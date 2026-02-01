@@ -13,6 +13,8 @@
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    /* Better touch scrolling */
+    touch-action: pan-x;
   }
 
   .nav::-webkit-scrollbar {
@@ -41,6 +43,9 @@
     border-radius: var(--radius-md);
     white-space: nowrap;
     flex-shrink: 0;
+    /* Better touch targets */
+    min-height: 44px;
+    touch-action: manipulation;
   }
 }
 
@@ -59,6 +64,8 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    /* Better touch scrolling */
+    touch-action: pan-y;
   }
 
   .brand {
@@ -84,6 +91,8 @@
     padding: 4px 8px;
     font-size: 11px;
     gap: 4px;
+    min-height: 32px;
+    touch-action: manipulation;
   }
 
   .topbar-status .pill .mono {
@@ -100,6 +109,7 @@
     gap: 4px;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    touch-action: pan-x;
   }
 
   .nav::-webkit-scrollbar {
@@ -120,6 +130,8 @@
     border-radius: var(--radius-md);
     white-space: nowrap;
     flex-shrink: 0;
+    min-height: 40px;
+    touch-action: manipulation;
   }
 
   /* Content */
@@ -130,12 +142,15 @@
   .content {
     padding: 4px 4px 16px;
     gap: 12px;
+    /* Better touch scrolling */
+    touch-action: pan-y;
   }
 
   /* Cards */
   .card {
     padding: 12px;
     border-radius: var(--radius-md);
+    touch-action: manipulation;
   }
 
   .card-title {
@@ -151,6 +166,7 @@
   .stat {
     padding: 10px;
     border-radius: var(--radius-md);
+    touch-action: manipulation;
   }
 
   .stat-label {
@@ -176,21 +192,28 @@
   .field input,
   .field textarea,
   .field select {
-    padding: 8px 10px;
+    padding: 10px 12px;
     border-radius: var(--radius-md);
-    font-size: 14px;
+    /* Prevent zoom on iOS */
+    font-size: 16px;
+    min-height: 44px;
+    touch-action: manipulation;
   }
 
   /* Buttons */
   .btn {
-    padding: 8px 12px;
-    font-size: 12px;
+    padding: 10px 14px;
+    font-size: 13px;
+    min-height: 44px;
+    touch-action: manipulation;
   }
 
   /* Pills */
   .pill {
     padding: 4px 10px;
     font-size: 12px;
+    min-height: 32px;
+    touch-action: manipulation;
   }
 
   /* Chat */
@@ -217,6 +240,9 @@
   .chat-thread {
     margin-top: 8px;
     padding: 12px 8px;
+    /* Better touch scrolling */
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
   }
 
   .chat-msg {
@@ -234,15 +260,19 @@
 
   .chat-compose__field textarea {
     min-height: 60px;
-    padding: 8px 10px;
+    padding: 10px 12px;
     border-radius: var(--radius-md);
-    font-size: 14px;
+    /* Prevent zoom on iOS */
+    font-size: 16px;
+    touch-action: manipulation;
   }
 
   /* Log stream */
   .log-stream {
     border-radius: var(--radius-md);
     max-height: 380px;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
   }
 
   .log-row {
@@ -271,6 +301,7 @@
   .list-item {
     padding: 10px;
     border-radius: var(--radius-md);
+    touch-action: manipulation;
   }
 
   .list-title {
@@ -286,6 +317,8 @@
     padding: 8px;
     border-radius: var(--radius-md);
     font-size: 11px;
+    touch-action: pan-x pan-y;
+    -webkit-overflow-scrolling: touch;
   }
 
   /* Theme toggle */
@@ -298,6 +331,19 @@
   .theme-icon {
     width: 12px;
     height: 12px;
+  }
+
+  .theme-toggle__button {
+    min-height: 36px;
+    min-width: 36px;
+    touch-action: manipulation;
+  }
+
+  /* Nav collapse toggle */
+  .nav-collapse-toggle {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
   }
 }
 
@@ -322,6 +368,7 @@
   .nav-item {
     padding: 6px 8px;
     font-size: 11px;
+    min-height: 40px;
   }
 
   .content {
@@ -347,18 +394,20 @@
 
   .chat-compose__field textarea {
     min-height: 52px;
-    padding: 8px 10px;
-    font-size: 13px;
+    padding: 10px 12px;
+    font-size: 16px;
   }
 
   .btn {
-    padding: 6px 10px;
-    font-size: 11px;
+    padding: 8px 12px;
+    font-size: 12px;
+    min-height: 44px;
   }
 
   .topbar-status .pill {
     padding: 3px 6px;
     font-size: 10px;
+    min-height: 32px;
   }
 
   .theme-toggle {
@@ -370,5 +419,10 @@
   .theme-icon {
     width: 11px;
     height: 11px;
+  }
+
+  .theme-toggle__button {
+    min-height: 32px;
+    min-width: 32px;
   }
 }
