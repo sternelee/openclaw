@@ -724,8 +724,8 @@
     border-color var(--duration-fast) var(--ease-out),
     background var(--duration-fast) var(--ease-out),
     transform var(--duration-fast) var(--ease-out);
-  /* Better touch target on mobile */
-  min-height: 32px;
+  /* Better touch target for interactive chips */
+  min-height: 36px;
   touch-action: manipulation;
 }
 

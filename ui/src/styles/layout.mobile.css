@@ -92,7 +92,7 @@
     font-size: 11px;
     gap: 4px;
     min-height: 32px;
-    touch-action: manipulation;
+    touch-action: none; /* Read-only status indicator */
   }
 
   .topbar-status .pill .mono {
@@ -213,7 +213,7 @@
     padding: 4px 10px;
     font-size: 12px;
     min-height: 32px;
-    touch-action: manipulation;
+    touch-action: none; /* Typically read-only status indicators */
   }
 
   /* Chat */
@@ -408,6 +408,7 @@
     padding: 3px 6px;
     font-size: 10px;
     min-height: 32px;
+    touch-action: none; /* Read-only status indicator */
   }
 
   .theme-toggle {

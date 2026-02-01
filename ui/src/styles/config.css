@@ -117,8 +117,8 @@
   right: 22px;
   top: 50%;
   transform: translateY(-50%);
-  width: 22px;
-  height: 22px;
+  width: 28px;
+  height: 28px;
   border: none;
   border-radius: var(--radius-full);
   background: var(--bg-hover);
@@ -133,8 +133,8 @@
     background var(--duration-fast) ease,
     color var(--duration-fast) ease;
   /* Better touch target on mobile */
-  min-height: 32px;
-  min-width: 32px;
+  min-height: 36px;
+  min-width: 36px;
   touch-action: manipulation;
 }
 

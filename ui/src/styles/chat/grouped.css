@@ -124,15 +124,15 @@ img.chat-avatar {
   background: var(--bg);
   color: var(--muted);
   border-radius: var(--radius-md);
-  padding: 4px 6px;
+  padding: 6px 8px;
   font-size: 14px;
   line-height: 1;
   cursor: pointer;
   opacity: 0;
   pointer-events: none;
   /* Better touch target on mobile */
-  min-height: 32px;
-  min-width: 32px;
+  min-height: 36px;
+  min-width: 36px;
   touch-action: manipulation;
   transition:
     opacity 120ms ease-out,
