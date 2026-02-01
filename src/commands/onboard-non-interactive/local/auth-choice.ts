@@ -198,7 +198,7 @@ export async function applyNonInteractiveAuthChoice(params: {
       cfg: baseConfig,
       flagValue: opts.glmCodingPlanApiKey,
       flagName: "--glm-coding-plan-api-key",
-      envVar: "GLM_CODING_PLAN_API_KEY",
+      envVar: "GLM_API_KEY",
       runtime,
     });
     if (!resolved) {

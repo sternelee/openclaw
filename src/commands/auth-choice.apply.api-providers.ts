@@ -478,7 +478,7 @@ export async function applyAuthChoiceApiProviders(
     const envKey = resolveEnvApiKey("glm-coding-plan");
     if (envKey) {
       const useExisting = await params.prompter.confirm({
-        message: `Use existing GLM_CODING_PLAN_API_KEY (${envKey.source}, ${formatApiKeyPreview(envKey.apiKey)})?`,
+        message: `Use existing GLM_API_KEY (${envKey.source}, ${formatApiKeyPreview(envKey.apiKey)})?`,
         initialValue: true,
       });
       if (useExisting) {

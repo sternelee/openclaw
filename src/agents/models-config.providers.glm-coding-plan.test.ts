@@ -9,16 +9,16 @@ describe("BigModel provider (glm-coding-plan)", () => {
     const agentDir = mkdtempSync(join(tmpdir(), "openclaw-test-"));
     const providers = await resolveImplicitProviders({ agentDir });
 
-    // BigModel requires explicit configuration via GLM_CODING_PLAN_API_KEY env var or profile
+    // BigModel requires explicit configuration via GLM_API_KEY env var or profile
     expect(providers?.["glm-coding-plan"]).toBeUndefined();
   });
 
-  it("should include glm-coding-plan when GLM_CODING_PLAN_API_KEY is set", async () => {
+  it("should include glm-coding-plan when GLM_API_KEY is set", async () => {
     const agentDir = mkdtempSync(join(tmpdir(), "openclaw-test-"));
-    const originalEnv = process.env.GLM_CODING_PLAN_API_KEY;
+    const originalEnv = process.env.GLM_API_KEY;
     
     try {
-      process.env.GLM_CODING_PLAN_API_KEY = "test-key";
+      process.env.GLM_API_KEY = "test-key";
       const providers = await resolveImplicitProviders({ agentDir });
 
       expect(providers?.["glm-coding-plan"]).toBeDefined();
@@ -31,9 +31,9 @@ describe("BigModel provider (glm-coding-plan)", () => {
       expect(providers?.["glm-coding-plan"]?.models?.[2]?.id).toBe("glm-4.6v");
     } finally {
       if (originalEnv !== undefined) {
-        process.env.GLM_CODING_PLAN_API_KEY = originalEnv;
+        process.env.GLM_API_KEY = originalEnv;
       } else {
-        delete process.env.GLM_CODING_PLAN_API_KEY;
+        delete process.env.GLM_API_KEY;
       }
     }
   });

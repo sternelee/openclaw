@@ -43,7 +43,7 @@ BigModel's Coding Plan API provides specialized coding models with an extended c
 
 ```bash
 # Set the API key as an environment variable
-export GLM_CODING_PLAN_API_KEY="your-api-key"
+export GLM_API_KEY="your-api-key"
 openclaw onboard
 ```
 
@@ -51,7 +51,7 @@ openclaw onboard
 
 ```json5
 {
-  env: { GLM_CODING_PLAN_API_KEY: "your-api-key" },
+  env: { GLM_API_KEY: "your-api-key" },
   agents: { defaults: { model: { primary: "glm-coding-plan/glm-4.7" } } },
 }
 ```
