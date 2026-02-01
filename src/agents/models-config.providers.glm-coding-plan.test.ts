@@ -4,12 +4,12 @@ import { mkdtempSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 
-describe("GLM Coding Plan provider", () => {
+describe("BigModel provider (glm-coding-plan)", () => {
   it("should not include glm-coding-plan when no API key is configured", async () => {
     const agentDir = mkdtempSync(join(tmpdir(), "openclaw-test-"));
     const providers = await resolveImplicitProviders({ agentDir });
 
-    // GLM Coding Plan requires explicit configuration via GLM_CODING_PLAN_API_KEY env var or profile
+    // BigModel requires explicit configuration via GLM_CODING_PLAN_API_KEY env var or profile
     expect(providers?.["glm-coding-plan"]).toBeUndefined();
   });
 

@@ -488,7 +488,7 @@ export async function applyAuthChoiceApiProviders(
     }
     if (!hasCredential) {
       const key = await params.prompter.text({
-        message: "Enter GLM Coding Plan API key",
+        message: "Enter BigModel API key",
         validate: validateApiKeyInput,
       });
       await setGlmCodingPlanApiKey(normalizeApiKeyInput(String(key)), params.agentDir);

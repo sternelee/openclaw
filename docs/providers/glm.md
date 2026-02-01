@@ -7,8 +7,8 @@ read_when:
 
 # GLM models
 
-GLM is a **model family** (not a company) available through the Z.AI platform and the GLM Coding Plan API. In OpenClaw, GLM
-models are accessed via the `zai` provider for standard models and the `glm-coding-plan` provider for coding-specific models.
+GLM is a **model family** (not a company) available through the Z.AI platform and BigModel's Coding Plan API. In OpenClaw, GLM
+models are accessed via the `zai` provider for standard models and the `glm-coding-plan` provider for BigModel's coding-specific models.
 
 ## Z.AI Provider (Standard GLM models)
 
@@ -29,9 +29,9 @@ openclaw onboard --auth-choice zai-api-key
 }
 ```
 
-## GLM Coding Plan Provider
+## BigModel Provider (Coding Plan)
 
-The GLM Coding Plan API provides specialized coding models with an extended context window (204K tokens).
+BigModel's Coding Plan API provides specialized coding models with an extended context window (204K tokens).
 
 ### Available models
 
@@ -58,8 +58,8 @@ openclaw onboard
 
 ## Notes
 
-- GLM versions and availability can change; check Z.AI's docs or GLM Coding Plan docs for the latest.
+- GLM versions and availability can change; check Z.AI's docs or BigModel's Coding Plan docs for the latest.
 - Example model IDs include `glm-4.7`, `glm-4.7-flash`, and `glm-4.6v`.
 - For Z.AI provider details, see [/providers/zai](/providers/zai).
-- GLM Coding Plan API endpoint: `https://open.bigmodel.cn/api/coding/paas/v4`
-- GLM Coding Plan models support up to 204K context window and 131K max output tokens.
+- BigModel Coding Plan API endpoint: `https://open.bigmodel.cn/api/coding/paas/v4`
+- BigModel Coding Plan models support up to 204K context window and 131K max output tokens.

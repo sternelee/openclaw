@@ -87,7 +87,7 @@ const AUTH_CHOICE_GROUP_DEFS: {
   },
   {
     value: "glm-coding-plan",
-    label: "GLM Coding Plan",
+    label: "BigModel",
     hint: "GLM 4.7, 4.7-flash, 4.6v",
     choices: ["glm-coding-plan-api-key"],
   },
@@ -180,7 +180,7 @@ export function buildAuthChoiceOptions(params: {
   options.push({ value: "zai-api-key", label: "Z.AI (GLM 4.7) API key" });
   options.push({
     value: "glm-coding-plan-api-key",
-    label: "GLM Coding Plan API key",
+    label: "BigModel API key",
     hint: "GLM 4.7, 4.7-flash, 4.6v models",
   });
   options.push({
