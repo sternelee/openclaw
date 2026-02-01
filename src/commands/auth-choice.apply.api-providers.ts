@@ -94,7 +94,7 @@ export async function applyAuthChoiceApiProviders(
       params.opts.tokenProvider === "glm-coding-plan" ||
       params.opts.tokenProvider === "glm-codingplan"
     ) {
-      authChoice = "glm-coding-plan-api-key";
+      authChoice = "glm-api-key";
     } else if (params.opts.tokenProvider === "xiaomi") {
       authChoice = "xiaomi-api-key";
     } else if (params.opts.tokenProvider === "synthetic") {
@@ -454,7 +454,7 @@ export async function applyAuthChoiceApiProviders(
     return { config: nextConfig, agentModelOverride };
   }
 
-  if (authChoice === "glm-coding-plan-api-key") {
+  if (authChoice === "glm-api-key") {
     let hasCredential = false;
 
     if (
@@ -464,14 +464,6 @@ export async function applyAuthChoiceApiProviders(
         params.opts?.tokenProvider === "glm-codingplan")
     ) {
       await setGlmCodingPlanApiKey(normalizeApiKeyInput(params.opts.token), params.agentDir);
-      hasCredential = true;
-    }
-
-    if (!hasCredential && params.opts?.glmCodingPlanApiKey) {
-      await setGlmCodingPlanApiKey(
-        normalizeApiKeyInput(params.opts.glmCodingPlanApiKey),
-        params.agentDir,
-      );
       hasCredential = true;
     }
 
