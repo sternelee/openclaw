@@ -26,7 +26,6 @@ export default defineConfig(({ command }) => {
       emptyOutDir: true,
       sourcemap: true,
       rollupOptions: {
-        // Ensure service worker is copied as-is
         input: {
           main: path.resolve(here, "index.html"),
         },

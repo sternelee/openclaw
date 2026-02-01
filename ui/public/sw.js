@@ -70,8 +70,8 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Network-first strategy for API/WebSocket connections
-  if (url.pathname.startsWith('/api') || url.pathname.includes('ws://')) {
+  // Network-first strategy for API/WebSocket paths
+  if (url.pathname.startsWith('/api')) {
     event.respondWith(
       fetch(request).catch(() => {
         return new Response(
