@@ -25,6 +25,12 @@ export default defineConfig(({ command }) => {
       outDir: path.resolve(here, "../dist/control-ui"),
       emptyOutDir: true,
       sourcemap: true,
+      rollupOptions: {
+        // Ensure service worker is copied as-is
+        input: {
+          main: path.resolve(here, "index.html"),
+        },
+      },
     },
     server: {
       host: true,
