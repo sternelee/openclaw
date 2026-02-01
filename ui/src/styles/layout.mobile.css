@@ -285,7 +285,6 @@
 
   .chat-compose__actions {
     width: 100%;
-    justify-content: stretch;
   }
 
   .chat-compose__actions .btn {
