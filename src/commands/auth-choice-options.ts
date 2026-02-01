@@ -16,6 +16,7 @@ export type AuthChoiceGroupId =
   | "ai-gateway"
   | "moonshot"
   | "zai"
+  | "glm-coding-plan"
   | "xiaomi"
   | "opencode-zen"
   | "minimax"
@@ -83,6 +84,12 @@ const AUTH_CHOICE_GROUP_DEFS: {
     label: "Z.AI (GLM 4.7)",
     hint: "API key",
     choices: ["zai-api-key"],
+  },
+  {
+    value: "glm-coding-plan",
+    label: "BigModel",
+    hint: "GLM 4.7, 4.7-flash, 4.6v",
+    choices: ["glm-api-key"],
   },
   {
     value: "copilot",
@@ -171,6 +178,11 @@ export function buildAuthChoiceOptions(params: {
     hint: "Uses the bundled Gemini CLI auth plugin",
   });
   options.push({ value: "zai-api-key", label: "Z.AI (GLM 4.7) API key" });
+  options.push({
+    value: "glm-api-key",
+    label: "BigModel API key",
+    hint: "GLM 4.7, 4.7-flash, 4.6v models",
+  });
   options.push({
     value: "xiaomi-api-key",
     label: "Xiaomi API key",

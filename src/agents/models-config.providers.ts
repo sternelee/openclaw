@@ -76,6 +76,16 @@ const OLLAMA_DEFAULT_COST = {
   cacheWrite: 0,
 };
 
+const GLM_CODING_PLAN_BASE_URL = "https://open.bigmodel.cn/api/coding/paas/v4";
+const GLM_CODING_PLAN_DEFAULT_CONTEXT_WINDOW = 204800;
+const GLM_CODING_PLAN_DEFAULT_MAX_TOKENS = 131072;
+const GLM_CODING_PLAN_DEFAULT_COST = {
+  input: 0,
+  output: 0,
+  cacheRead: 0,
+  cacheWrite: 0,
+};
+
 interface OllamaModel {
   name: string;
   modified_at: string;
@@ -376,6 +386,42 @@ export function buildXiaomiProvider(): ProviderConfig {
   };
 }
 
+function buildGlmCodingPlanProvider(): ProviderConfig {
+  return {
+    baseUrl: GLM_CODING_PLAN_BASE_URL,
+    api: "openai-completions",
+    models: [
+      {
+        id: "glm-4.7",
+        name: "GLM-4.7",
+        reasoning: false,
+        input: ["text"],
+        cost: GLM_CODING_PLAN_DEFAULT_COST,
+        contextWindow: GLM_CODING_PLAN_DEFAULT_CONTEXT_WINDOW,
+        maxTokens: GLM_CODING_PLAN_DEFAULT_MAX_TOKENS,
+      },
+      {
+        id: "glm-4.7-flash",
+        name: "GLM-4.7 Flash",
+        reasoning: false,
+        input: ["text"],
+        cost: GLM_CODING_PLAN_DEFAULT_COST,
+        contextWindow: GLM_CODING_PLAN_DEFAULT_CONTEXT_WINDOW,
+        maxTokens: GLM_CODING_PLAN_DEFAULT_MAX_TOKENS,
+      },
+      {
+        id: "glm-4.6v",
+        name: "GLM-4.6V",
+        reasoning: false,
+        input: ["text", "image"],
+        cost: GLM_CODING_PLAN_DEFAULT_COST,
+        contextWindow: GLM_CODING_PLAN_DEFAULT_CONTEXT_WINDOW,
+        maxTokens: GLM_CODING_PLAN_DEFAULT_MAX_TOKENS,
+      },
+    ],
+  };
+}
+
 async function buildVeniceProvider(): Promise<ProviderConfig> {
   const models = await discoverVeniceModels();
   return {
@@ -451,6 +497,14 @@ export async function resolveImplicitProviders(params: {
     resolveApiKeyFromProfiles({ provider: "xiaomi", store: authStore });
   if (xiaomiKey) {
     providers.xiaomi = { ...buildXiaomiProvider(), apiKey: xiaomiKey };
+  }
+
+  // GLM coding plan provider
+  const glmCodingPlanKey =
+    resolveEnvApiKeyVarName("glm-coding-plan") ??
+    resolveApiKeyFromProfiles({ provider: "glm-coding-plan", store: authStore });
+  if (glmCodingPlanKey) {
+    providers["glm-coding-plan"] = { ...buildGlmCodingPlanProvider(), apiKey: glmCodingPlanKey };
   }
 
   // Ollama provider - only add if explicitly configured

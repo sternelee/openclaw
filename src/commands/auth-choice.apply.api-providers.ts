@@ -30,6 +30,7 @@ import {
   applyXiaomiConfig,
   applyXiaomiProviderConfig,
   applyZaiConfig,
+  GLM_CODING_PLAN_DEFAULT_MODEL_REF,
   KIMI_CODING_MODEL_REF,
   MOONSHOT_DEFAULT_MODEL_REF,
   OPENROUTER_DEFAULT_MODEL_REF,
@@ -38,6 +39,7 @@ import {
   VERCEL_AI_GATEWAY_DEFAULT_MODEL_REF,
   XIAOMI_DEFAULT_MODEL_REF,
   setGeminiApiKey,
+  setGlmCodingPlanApiKey,
   setKimiCodingApiKey,
   setMoonshotApiKey,
   setOpencodeZenApiKey,
@@ -88,6 +90,11 @@ export async function applyAuthChoiceApiProviders(
       authChoice = "gemini-api-key";
     } else if (params.opts.tokenProvider === "zai") {
       authChoice = "zai-api-key";
+    } else if (
+      params.opts.tokenProvider === "glm-coding-plan" ||
+      params.opts.tokenProvider === "glm-codingplan"
+    ) {
+      authChoice = "glm-api-key";
     } else if (params.opts.tokenProvider === "xiaomi") {
       authChoice = "xiaomi-api-key";
     } else if (params.opts.tokenProvider === "synthetic") {
@@ -438,6 +445,76 @@ export async function applyAuthChoiceApiProviders(
           },
         }),
         noteDefault: ZAI_DEFAULT_MODEL_REF,
+        noteAgentModel,
+        prompter: params.prompter,
+      });
+      nextConfig = applied.config;
+      agentModelOverride = applied.agentModelOverride ?? agentModelOverride;
+    }
+    return { config: nextConfig, agentModelOverride };
+  }
+
+  if (authChoice === "glm-api-key") {
+    let hasCredential = false;
+
+    if (
+      !hasCredential &&
+      params.opts?.token &&
+      (params.opts?.tokenProvider === "glm-coding-plan" ||
+        params.opts?.tokenProvider === "glm-codingplan")
+    ) {
+      await setGlmCodingPlanApiKey(normalizeApiKeyInput(params.opts.token), params.agentDir);
+      hasCredential = true;
+    }
+
+    const envKey = resolveEnvApiKey("glm-coding-plan");
+    if (envKey) {
+      const useExisting = await params.prompter.confirm({
+        message: `Use existing GLM_API_KEY (${envKey.source}, ${formatApiKeyPreview(envKey.apiKey)})?`,
+        initialValue: true,
+      });
+      if (useExisting) {
+        await setGlmCodingPlanApiKey(envKey.apiKey, params.agentDir);
+        hasCredential = true;
+      }
+    }
+    if (!hasCredential) {
+      const key = await params.prompter.text({
+        message: "Enter BigModel API key",
+        validate: validateApiKeyInput,
+      });
+      await setGlmCodingPlanApiKey(normalizeApiKeyInput(String(key)), params.agentDir);
+    }
+    nextConfig = applyAuthProfileConfig(nextConfig, {
+      profileId: "glm-coding-plan:default",
+      provider: "glm-coding-plan",
+      mode: "api_key",
+    });
+    {
+      const applied = await applyDefaultModelChoice({
+        config: nextConfig,
+        setDefaultModel: params.setDefaultModel,
+        defaultModel: GLM_CODING_PLAN_DEFAULT_MODEL_REF,
+        applyDefaultConfig: (config) => config,
+        applyProviderConfig: (config) => ({
+          ...config,
+          agents: {
+            ...config.agents,
+            defaults: {
+              ...config.agents?.defaults,
+              models: {
+                ...config.agents?.defaults?.models,
+                [GLM_CODING_PLAN_DEFAULT_MODEL_REF]: {
+                  ...config.agents?.defaults?.models?.[GLM_CODING_PLAN_DEFAULT_MODEL_REF],
+                  alias:
+                    config.agents?.defaults?.models?.[GLM_CODING_PLAN_DEFAULT_MODEL_REF]?.alias ??
+                    "glm-code",
+                },
+              },
+            },
+          },
+        }),
+        noteDefault: GLM_CODING_PLAN_DEFAULT_MODEL_REF,
         noteAgentModel,
         prompter: params.prompter,
       });

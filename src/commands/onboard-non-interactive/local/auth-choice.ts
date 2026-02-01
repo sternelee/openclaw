@@ -23,6 +23,7 @@ import {
   applyZaiConfig,
   setAnthropicApiKey,
   setGeminiApiKey,
+  setGlmCodingPlanApiKey,
   setKimiCodingApiKey,
   setMinimaxApiKey,
   setMoonshotApiKey,
@@ -189,6 +190,29 @@ export async function applyNonInteractiveAuthChoice(params: {
       mode: "api_key",
     });
     return applyZaiConfig(nextConfig);
+  }
+
+  if (authChoice === "glm-api-key") {
+    const resolved = await resolveNonInteractiveApiKey({
+      provider: "glm-coding-plan",
+      cfg: baseConfig,
+      flagValue: opts.glmCodingPlanApiKey,
+      flagName: "--glm-api-key",
+      envVar: "GLM_API_KEY",
+      runtime,
+    });
+    if (!resolved) {
+      return null;
+    }
+    if (resolved.source !== "profile") {
+      await setGlmCodingPlanApiKey(resolved.key);
+    }
+    nextConfig = applyAuthProfileConfig(nextConfig, {
+      profileId: "glm-coding-plan:default",
+      provider: "glm-coding-plan",
+      mode: "api_key",
+    });
+    return nextConfig;
   }
 
   if (authChoice === "xiaomi-api-key") {
