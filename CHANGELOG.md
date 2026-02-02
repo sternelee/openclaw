@@ -2,6 +2,12 @@
 
 Docs: https://docs.openclaw.ai
 
+## Unreleased
+
+### Changes
+
+- Docs: add comprehensive webhook gateway integration guide with Cloudflare WebSocket example. Thanks @sternelee.
+
 ## 2026.1.31
 
 ### Changes
