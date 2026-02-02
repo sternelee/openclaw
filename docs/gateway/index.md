@@ -322,6 +322,21 @@ Windows installs should use **WSL2** and follow the Linux systemd section above.
 - `openclaw gateway stop|restart` — stop/restart the supervised gateway service (launchd/systemd).
 - Gateway helper subcommands assume a running gateway on `--url`; they no longer auto-spawn one.
 
+## Webhook Gateway Integration
+
+The Gateway supports webhook-based channel integrations for platforms that push events to your server (e.g., Telegram, LINE, custom services). See:
+
+- [Webhook Integration Guide](/gateway/webhook-integration) — Complete guide for developing webhook gateways
+- [Cloudflare WebSocket Example](/gateway/webhook-example-cloudflare) — Production-ready Cloudflare Workers implementation
+- [Quick Reference](/gateway/webhook-quick-reference) — Essential patterns and code snippets
+
+Key patterns for webhook gateways:
+
+- **Signature validation** — Always validate webhook signatures before processing
+- **Immediate response** — Return 200 immediately, process events asynchronously
+- **Plugin HTTP registry** — Use `registerPluginHttpRoute` for route management
+- **Graceful shutdown** — Listen for abort signals and clean up resources
+
 ## Migration guidance
 
 - Retire uses of `openclaw gateway` and the legacy TCP control port.
